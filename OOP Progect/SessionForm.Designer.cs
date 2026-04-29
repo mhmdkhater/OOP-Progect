@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SessionForm));
             labelwelcome = new Label();
             label3 = new Label();
             panel1 = new Panel();
@@ -64,12 +65,11 @@
             labelwelcome.BackColor = Color.Transparent;
             labelwelcome.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelwelcome.ForeColor = Color.White;
-            labelwelcome.Location = new Point(208, 11);
+            labelwelcome.Location = new Point(175, 11);
             labelwelcome.Name = "labelwelcome";
             labelwelcome.Size = new Size(230, 82);
             labelwelcome.TabIndex = 0;
             labelwelcome.Text = "Welcome back,\r\n User 👋";
-           
             // 
             // label3
             // 
@@ -77,7 +77,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label3.ForeColor = SystemColors.ButtonFace;
-            label3.Location = new Point(208, 103);
+            label3.Location = new Point(366, 56);
             label3.Name = "label3";
             label3.Size = new Size(242, 23);
             label3.TabIndex = 6;
@@ -85,7 +85,8 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(150, 0, 0, 0);
+            panel1.Anchor = AnchorStyles.None;
+            panel1.BackColor = Color.Transparent;
             panel1.Controls.Add(panelSidebar);
             panel1.Controls.Add(buttonSettings);
             panel1.Controls.Add(buttonStart);
@@ -95,23 +96,23 @@
             panel1.Controls.Add(panelPoints);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(labelwelcome);
-            panel1.Location = new Point(-2, -2);
+            panel1.Location = new Point(61, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(801, 452);
-            panel1.TabIndex = 8;
+            panel1.Size = new Size(662, 418);
+            panel1.TabIndex = 1;
             // 
             // panelSidebar
             // 
-            panelSidebar.BackColor = Color.Navy;
+            panelSidebar.BackColor = Color.SteelBlue;
             panelSidebar.Controls.Add(button8);
             panelSidebar.Controls.Add(button7);
             panelSidebar.Controls.Add(button6);
             panelSidebar.Controls.Add(button5);
             panelSidebar.Controls.Add(button4);
             panelSidebar.Controls.Add(label9);
-            panelSidebar.Location = new Point(13, 71);
+            panelSidebar.Location = new Point(23, 71);
             panelSidebar.Name = "panelSidebar";
-            panelSidebar.Size = new Size(0, 500);
+            panelSidebar.Size = new Size(0, 322);
             panelSidebar.TabIndex = 12;
             // 
             // button8
@@ -179,7 +180,7 @@
             button4.TabIndex = 1;
             button4.Text = "𓃑 Dashboard";
             button4.UseVisualStyleBackColor = false;
-            
+            // 
             // label9
             // 
             label9.AutoSize = true;
@@ -199,7 +200,7 @@
             buttonSettings.FlatStyle = FlatStyle.Flat;
             buttonSettings.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             buttonSettings.ForeColor = SystemColors.ButtonHighlight;
-            buttonSettings.Location = new Point(271, 380);
+            buttonSettings.Location = new Point(296, 353);
             buttonSettings.Name = "buttonSettings";
             buttonSettings.Size = new Size(201, 40);
             buttonSettings.TabIndex = 11;
@@ -216,7 +217,7 @@
             buttonStart.FlatStyle = FlatStyle.Flat;
             buttonStart.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             buttonStart.ForeColor = Color.White;
-            buttonStart.Location = new Point(271, 307);
+            buttonStart.Location = new Point(296, 297);
             buttonStart.Name = "buttonStart";
             buttonStart.Size = new Size(201, 50);
             buttonStart.TabIndex = 10;
@@ -232,7 +233,7 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.White;
-            label8.Location = new Point(238, 255);
+            label8.Location = new Point(199, 266);
             label8.Name = "label8";
             label8.Size = new Size(143, 28);
             label8.TabIndex = 9;
@@ -240,11 +241,12 @@
             // 
             // panelStreak
             // 
-            panelStreak.BackColor = Color.FromArgb(0, 0, 64);
+            panelStreak.Anchor = AnchorStyles.Right;
+            panelStreak.BackColor = SystemColors.Highlight;
             panelStreak.Controls.Add(label5);
             panelStreak.Controls.Add(labelStraek);
             panelStreak.Controls.Add(label7);
-            panelStreak.Location = new Point(475, 141);
+            panelStreak.Location = new Point(459, 148);
             panelStreak.Name = "panelStreak";
             panelStreak.Size = new Size(200, 100);
             panelStreak.TabIndex = 8;
@@ -287,11 +289,12 @@
             // 
             // panelPoints
             // 
-            panelPoints.BackColor = Color.FromArgb(0, 0, 64);
+            panelPoints.Anchor = AnchorStyles.Right;
+            panelPoints.BackColor = SystemColors.Highlight;
             panelPoints.Controls.Add(label4);
             panelPoints.Controls.Add(labelPoints);
             panelPoints.Controls.Add(label1);
-            panelPoints.Location = new Point(238, 141);
+            panelPoints.Location = new Point(253, 148);
             panelPoints.Name = "panelPoints";
             panelPoints.Size = new Size(200, 100);
             panelPoints.TabIndex = 2;
@@ -356,12 +359,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.تاني_فورم;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
             Controls.Add(panel1);
             Name = "SessionForm";
             Text = "SessionForm";
+            WindowState = FormWindowState.Maximized;
             Load += SessionForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -399,5 +403,6 @@
         private Button button6;
         private Button button5;
         private System.Windows.Forms.Timer timerSidebar;
+        private Panel panel2;
     }
 }

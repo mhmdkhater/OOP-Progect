@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FocusSessionForm));
             labelFocus = new Label();
             numericFocus = new NumericUpDown();
             labelBreak = new Label();
@@ -38,13 +39,10 @@
             buttonAddApp = new Button();
             buttonStartSession = new Button();
             buttonCancel = new Button();
-            panel2 = new Panel();
             panelMain = new Panel();
-            panelShadow = new Panel();
             fadeTimer = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)numericFocus).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericBreak).BeginInit();
-            panel2.SuspendLayout();
             panelMain.SuspendLayout();
             SuspendLayout();
             // 
@@ -62,7 +60,7 @@
             // 
             // numericFocus
             // 
-            numericFocus.BackColor = Color.Navy;
+            numericFocus.BackColor = Color.DodgerBlue;
             numericFocus.BorderStyle = BorderStyle.FixedSingle;
             numericFocus.ForeColor = Color.White;
             numericFocus.Location = new Point(266, 21);
@@ -87,7 +85,7 @@
             // 
             // numericBreak
             // 
-            numericBreak.BackColor = Color.Navy;
+            numericBreak.BackColor = Color.DodgerBlue;
             numericBreak.BorderStyle = BorderStyle.FixedSingle;
             numericBreak.ForeColor = Color.White;
             numericBreak.Location = new Point(266, 69);
@@ -112,7 +110,7 @@
             // 
             // checkedListApps
             // 
-            checkedListApps.BackColor = Color.Navy;
+            checkedListApps.BackColor = Color.DodgerBlue;
             checkedListApps.BorderStyle = BorderStyle.None;
             checkedListApps.ForeColor = Color.White;
             checkedListApps.FormattingEnabled = true;
@@ -136,7 +134,7 @@
             // 
             // buttonStartSession
             // 
-            buttonStartSession.BackColor = Color.Purple;
+            buttonStartSession.BackColor = SystemColors.MenuHighlight;
             buttonStartSession.FlatAppearance.BorderSize = 0;
             buttonStartSession.FlatStyle = FlatStyle.Flat;
             buttonStartSession.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -151,7 +149,7 @@
             // 
             // buttonCancel
             // 
-            buttonCancel.BackColor = Color.Gray;
+            buttonCancel.BackColor = Color.Red;
             buttonCancel.FlatAppearance.BorderSize = 0;
             buttonCancel.FlatStyle = FlatStyle.Flat;
             buttonCancel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -164,18 +162,9 @@
             buttonCancel.UseVisualStyleBackColor = false;
             buttonCancel.Click += buttonCancel_Click;
             // 
-            // panel2
-            // 
-            panel2.BackColor = Color.FromArgb(150, 0, 0, 0);
-            panel2.Controls.Add(panelMain);
-            panel2.Controls.Add(panelShadow);
-            panel2.Location = new Point(-1, 1);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(803, 448);
-            panel2.TabIndex = 9;
-            // 
             // panelMain
             // 
+            panelMain.Anchor = AnchorStyles.None;
             panelMain.BackColor = Color.FromArgb(150, 0, 0, 0);
             panelMain.Controls.Add(buttonCancel);
             panelMain.Controls.Add(labelFocus);
@@ -186,18 +175,10 @@
             panelMain.Controls.Add(labelBreak);
             panelMain.Controls.Add(labelApps);
             panelMain.Controls.Add(checkedListApps);
-            panelMain.Location = new Point(144, 42);
+            panelMain.Location = new Point(136, 42);
             panelMain.Name = "panelMain";
             panelMain.Size = new Size(500, 350);
-            panelMain.TabIndex = 0;
-            // 
-            // panelShadow
-            // 
-            panelShadow.BackColor = Color.FromArgb(150, 0, 0, 0);
-            panelShadow.Location = new Point(136, 33);
-            panelShadow.Name = "panelShadow";
-            panelShadow.Size = new Size(514, 367);
-            panelShadow.TabIndex = 9;
+            panelMain.TabIndex = 1;
             // 
             // fadeTimer
             // 
@@ -208,17 +189,17 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.تالت_فورم;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
-            Controls.Add(panel2);
+            Controls.Add(panelMain);
             Name = "FocusSessionForm";
             Opacity = 0D;
             Text = "FocusSessionForm";
+            WindowState = FormWindowState.Maximized;
             Load += FocusSessionForm_Load;
             ((System.ComponentModel.ISupportInitialize)numericFocus).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericBreak).EndInit();
-            panel2.ResumeLayout(false);
             panelMain.ResumeLayout(false);
             panelMain.PerformLayout();
             ResumeLayout(false);
@@ -236,9 +217,7 @@
         private Button buttonStartSession;
         private Button buttonCancel;
         private Panel panel1;
-        private Panel panel2;
         private Panel panelMain;
-        private Panel panelShadow;
         private System.Windows.Forms.Timer fadeTimer;
     }
 }

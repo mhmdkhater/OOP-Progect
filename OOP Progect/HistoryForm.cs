@@ -42,29 +42,39 @@ namespace OOP_Progect
         // =========================
         void LoadData()
         {
-            dataGridHistory.Rows.Clear();
-
-            if (!File.Exists("sessions.json"))
-                return;
-
-            string json = File.ReadAllText("sessions.json");
-
-            List<SessionRecord> sessions =
-                JsonSerializer.Deserialize<List<SessionRecord>>(json)
-                ?? new List<SessionRecord>();
-
-            foreach (var session in sessions)
+            try
             {
-                int row = dataGridHistory.Rows.Add();
+                dataGridHistory.Rows.Clear();
 
-                dataGridHistory.Rows[row].Cells[0].Value = session.Date;
-                dataGridHistory.Rows[row].Cells[1].Value = session.Duration;
-                dataGridHistory.Rows[row].Cells[2].Value = session.BreakTime;
-                dataGridHistory.Rows[row].Cells[3].Value = session.Status.ToString();
+                if (!File.Exists("sessions.json"))
+                    return;
+
+                string json = File.ReadAllText("sessions.json");
+
+                // 1. قراءة الداتا كمصفوفة كائنات
+                SessionRecord[] sessions = JsonSerializer.Deserialize<SessionRecord[]>(json) ?? new SessionRecord[0];
+
+                // 2. اللف على المصفوفة لعرضها
+                for (int i = 0; i < sessions.Length; i++)
+                {
+                    int row = dataGridHistory.Rows.Add();
+
+                    dataGridHistory.Rows[row].Cells[0].Value = sessions[i].Date;
+                    dataGridHistory.Rows[row].Cells[1].Value = sessions[i].Duration;
+                    dataGridHistory.Rows[row].Cells[2].Value = sessions[i].BreakTime;
+
+                    // استخدام الـ Polymorphism هنا لو حبيت (اختياري بس حلو):
+                    // ممكن تطبع Summary أو تعرض الـ Status بس
+                    dataGridHistory.Rows[row].Cells[3].Value = sessions[i].Status.ToString();
+                }
+
+                dataGridHistory.ClearSelection();
+                ColorStatus();
             }
-
-            dataGridHistory.ClearSelection();
-            ColorStatus();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading history: " + ex.Message);
+            }
         }
 
         // =========================

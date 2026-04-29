@@ -67,7 +67,7 @@ namespace OOP_Progect
             this.Shown += (s, e) =>
             {
                 panelMain.Region = new Region(GetRoundedPath(panelMain.ClientRectangle, 25));
-                panelShadow.Region = new Region(GetRoundedPath(panelShadow.ClientRectangle, 25));
+               
 
                 buttonStartSession.Region = new Region(GetRoundedPath(buttonStartSession.ClientRectangle, 20));
                 buttonCancel.Region = new Region(GetRoundedPath(buttonCancel.ClientRectangle, 20));
@@ -102,13 +102,16 @@ namespace OOP_Progect
             int focusTime = (int)numericFocus.Value;
             int breakTime = (int)numericBreak.Value;
 
-            List<string> selectedApps = new List<string>();
+            // 1. عملنا مصفوفة حجمها على قد العناصر اللي المستخدم اختارها
+            string[] selectedApps = new string[checkedListApps.CheckedItems.Count];
 
-            foreach (object item in checkedListApps.CheckedItems)
+            // 2. عبينا المصفوفة
+            for (int i = 0; i < checkedListApps.CheckedItems.Count; i++)
             {
-                selectedApps.Add(item?.ToString() ?? "");
+                selectedApps[i] = checkedListApps.CheckedItems[i]?.ToString() ?? "";
             }
 
+           
             TimerForm timerForm = new TimerForm(focusTime, breakTime, selectedApps, mainForm);
             timerForm.Show();
 

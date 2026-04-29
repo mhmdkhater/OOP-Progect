@@ -27,10 +27,18 @@ namespace OOP_Progect
             panelSession.Region = new Region(GetRoundedPath(panelSession.ClientRectangle, 20));
 
             // Load Settings
-            if (File.Exists(filePath))
+            try
             {
-                string json = File.ReadAllText(filePath);
-                settings = JsonSerializer.Deserialize<SettingsData>(json) ?? new SettingsData();
+                if (File.Exists(filePath))
+                {
+                    string json = File.ReadAllText(filePath);
+                    settings = JsonSerializer.Deserialize<SettingsData>(json) ?? new SettingsData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading settings: " + ex.Message);
+                settings = new SettingsData();
             }
             checkSilentMode.Checked = settings.SilentMode;
 
@@ -52,8 +60,15 @@ namespace OOP_Progect
 
         void SaveSettings()
         {
-            string json = JsonSerializer.Serialize(settings);
-            File.WriteAllText(filePath, json);
+            try
+            {
+                string json = JsonSerializer.Serialize(settings);
+                File.WriteAllText(filePath, json);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving settings: " + ex.Message);
+            }
         }
 
         void StyleControls(Control parent)

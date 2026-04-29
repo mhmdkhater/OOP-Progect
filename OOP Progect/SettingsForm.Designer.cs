@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             labelTitle = new Label();
             label6 = new Label();
             panelAppearance = new Panel();
@@ -43,10 +44,12 @@
             label2 = new Label();
             numericDefaultBreak = new NumericUpDown();
             buttonBack = new Button();
+            panel1 = new Panel();
             panelAppearance.SuspendLayout();
             panelSession.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericDefaultFocus).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericDefaultBreak).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // labelTitle
@@ -55,7 +58,7 @@
             labelTitle.BackColor = Color.Transparent;
             labelTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelTitle.ForeColor = Color.White;
-            labelTitle.Location = new Point(234, 18);
+            labelTitle.Location = new Point(189, 15);
             labelTitle.Name = "labelTitle";
             labelTitle.Size = new Size(192, 41);
             labelTitle.TabIndex = 0;
@@ -67,7 +70,7 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Transparent;
-            label6.Location = new Point(248, 68);
+            label6.Location = new Point(243, 56);
             label6.Name = "label6";
             label6.Size = new Size(201, 20);
             label6.TabIndex = 13;
@@ -75,6 +78,7 @@
             // 
             // panelAppearance
             // 
+            panelAppearance.Anchor = AnchorStyles.None;
             panelAppearance.BackColor = Color.FromArgb(150, 0, 0, 0);
             panelAppearance.Controls.Add(checkSilentMode);
             panelAppearance.Controls.Add(label3);
@@ -85,7 +89,7 @@
             panelAppearance.Location = new Point(106, 100);
             panelAppearance.Name = "panelAppearance";
             panelAppearance.Size = new Size(514, 142);
-            panelAppearance.TabIndex = 12;
+            panelAppearance.TabIndex = 1;
             // 
             // checkSilentMode
             // 
@@ -103,9 +107,9 @@
             label3.ForeColor = Color.White;
             label3.Location = new Point(19, 53);
             label3.Name = "label3";
-            label3.Size = new Size(200, 20);
+            label3.Size = new Size(116, 20);
             label3.TabIndex = 12;
-            label3.Text = "Silent Mode (No Popups) 🔕";
+            label3.Text = "(No Popups) 🔕";
             // 
             // label5
             // 
@@ -143,6 +147,7 @@
             // 
             // panelSession
             // 
+            panelSession.Anchor = AnchorStyles.None;
             panelSession.BackColor = Color.FromArgb(150, 0, 0, 0);
             panelSession.Controls.Add(label7);
             panelSession.Controls.Add(label1);
@@ -153,7 +158,7 @@
             panelSession.Location = new Point(106, 259);
             panelSession.Name = "panelSession";
             panelSession.Size = new Size(514, 125);
-            panelSession.TabIndex = 14;
+            panelSession.TabIndex = 1;
             // 
             // label7
             // 
@@ -180,7 +185,7 @@
             // 
             // numericDefaultFocus
             // 
-            numericDefaultFocus.BackColor = Color.FromArgb(40, 40, 70);
+            numericDefaultFocus.BackColor = SystemColors.ActiveCaption;
             numericDefaultFocus.ForeColor = Color.White;
             numericDefaultFocus.Location = new Point(290, 49);
             numericDefaultFocus.Name = "numericDefaultFocus";
@@ -202,7 +207,7 @@
             // 
             // numericDefaultBreak
             // 
-            numericDefaultBreak.BackColor = Color.FromArgb(40, 40, 70);
+            numericDefaultBreak.BackColor = SystemColors.ActiveCaption;
             numericDefaultBreak.ForeColor = Color.White;
             numericDefaultBreak.Location = new Point(290, 82);
             numericDefaultBreak.Name = "numericDefaultBreak";
@@ -213,9 +218,9 @@
             // 
             // buttonBack
             // 
-            buttonBack.BackColor = Color.Navy;
+            buttonBack.BackColor = Color.SteelBlue;
             buttonBack.ForeColor = Color.FromArgb(192, 192, 255);
-            buttonBack.Location = new Point(646, 363);
+            buttonBack.Location = new Point(550, 378);
             buttonBack.Name = "buttonBack";
             buttonBack.Size = new Size(120, 40);
             buttonBack.TabIndex = 15;
@@ -223,20 +228,31 @@
             buttonBack.UseVisualStyleBackColor = false;
             buttonBack.Click += buttonBack_Click_1;
             // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.None;
+            panel1.BackColor = Color.FromArgb(150, 0, 0, 0);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(buttonBack);
+            panel1.Controls.Add(labelTitle);
+            panel1.Location = new Point(59, 12);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(689, 426);
+            panel1.TabIndex = 1;
+            // 
             // SettingsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.رابع_فورم;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
-            Controls.Add(buttonBack);
-            Controls.Add(label6);
             Controls.Add(panelSession);
-            Controls.Add(labelTitle);
             Controls.Add(panelAppearance);
+            Controls.Add(panel1);
             Name = "SettingsForm";
             Text = "SettingsForm";
+            WindowState = FormWindowState.Maximized;
             Load += SettingsForm_Load;
             panelAppearance.ResumeLayout(false);
             panelAppearance.PerformLayout();
@@ -244,8 +260,9 @@
             panelSession.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericDefaultFocus).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericDefaultBreak).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -265,5 +282,6 @@
         private Button buttonBack;
         private Label label3;
         private CheckBox checkSilentMode;
+        private Panel panel1;
     }
 }

@@ -32,6 +32,7 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HistoryForm));
             labelTitle = new Label();
             dataGridHistory = new DataGridView();
             Date = new DataGridViewTextBoxColumn();
@@ -50,6 +51,7 @@
             // 
             // labelTitle
             // 
+            labelTitle.Anchor = AnchorStyles.None;
             labelTitle.AutoSize = true;
             labelTitle.BackColor = Color.Transparent;
             labelTitle.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -57,13 +59,14 @@
             labelTitle.Location = new Point(88, 9);
             labelTitle.Name = "labelTitle";
             labelTitle.Size = new Size(284, 46);
-            labelTitle.TabIndex = 0;
+            labelTitle.TabIndex = 1;
             labelTitle.Text = "  Session History";
             // 
             // dataGridHistory
             // 
             dataGridViewCellStyle1.BackColor = Color.FromArgb(30, 30, 60);
             dataGridHistory.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridHistory.Anchor = AnchorStyles.None;
             dataGridHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridHistory.BackgroundColor = Color.FromArgb(0, 0, 64);
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -120,19 +123,21 @@
             // 
             // buttonBack
             // 
-            buttonBack.BackColor = Color.FromArgb(30, 30, 60);
+            buttonBack.Anchor = AnchorStyles.None;
+            buttonBack.BackColor = Color.PaleVioletRed;
             buttonBack.FlatStyle = FlatStyle.Flat;
             buttonBack.ForeColor = Color.White;
             buttonBack.Location = new Point(53, 382);
             buttonBack.Name = "buttonBack";
             buttonBack.Size = new Size(120, 40);
-            buttonBack.TabIndex = 2;
+            buttonBack.TabIndex = 1;
             buttonBack.Text = "🔙 Back";
             buttonBack.UseVisualStyleBackColor = false;
             buttonBack.Click += buttonBack_Click;
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -140,37 +145,40 @@
             label1.Location = new Point(137, 55);
             label1.Name = "label1";
             label1.Size = new Size(249, 23);
-            label1.TabIndex = 3;
+            label1.TabIndex = 1;
             label1.Text = "Track your progress over time . ";
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.FlatStyle = FlatStyle.Flat;
             label2.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.FromArgb(0, 0, 192);
+            label2.ForeColor = SystemColors.HotTrack;
             label2.Location = new Point(41, 9);
             label2.Name = "label2";
             label2.Size = new Size(68, 46);
-            label2.TabIndex = 4;
+            label2.TabIndex = 1;
             label2.Text = "🕚";
             // 
             // buttonClear
             // 
-            buttonClear.BackColor = Color.MediumPurple;
+            buttonClear.Anchor = AnchorStyles.None;
+            buttonClear.BackColor = Color.Crimson;
             buttonClear.FlatStyle = FlatStyle.Flat;
             buttonClear.ForeColor = Color.White;
             buttonClear.Location = new Point(607, 382);
             buttonClear.Name = "buttonClear";
             buttonClear.Size = new Size(139, 40);
-            buttonClear.TabIndex = 5;
+            buttonClear.TabIndex = 1;
             buttonClear.Text = "🗑️  Clear History";
             buttonClear.UseVisualStyleBackColor = false;
             buttonClear.Click += buttonClear_Click;
             // 
             // panelTable
             // 
+            panelTable.Anchor = AnchorStyles.None;
             panelTable.BackColor = Color.FromArgb(30, 30, 60);
             panelTable.Controls.Add(dataGridHistory);
             panelTable.Location = new Point(41, 96);
@@ -180,13 +188,14 @@
             // 
             // buttonReset
             // 
-            buttonReset.BackColor = Color.FromArgb(0, 0, 192);
+            buttonReset.Anchor = AnchorStyles.None;
+            buttonReset.BackColor = SystemColors.MenuHighlight;
             buttonReset.FlatStyle = FlatStyle.Flat;
             buttonReset.ForeColor = Color.White;
             buttonReset.Location = new Point(309, 382);
             buttonReset.Name = "buttonReset";
             buttonReset.Size = new Size(164, 40);
-            buttonReset.TabIndex = 7;
+            buttonReset.TabIndex = 1;
             buttonReset.Text = "♻️  Reset Progress";
             buttonReset.UseVisualStyleBackColor = false;
             buttonReset.Click += buttonReset_Click;
@@ -195,7 +204,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.خامس_فورم_;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
             Controls.Add(buttonReset);
@@ -207,6 +216,7 @@
             Controls.Add(labelTitle);
             Name = "HistoryForm";
             Text = "HistoryForm";
+            WindowState = FormWindowState.Maximized;
             Load += HistoryForm_Load_1;
             ((System.ComponentModel.ISupportInitialize)dataGridHistory).EndInit();
             panelTable.ResumeLayout(false);

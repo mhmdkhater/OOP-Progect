@@ -72,10 +72,14 @@ namespace OOP_Progect
                     string json = File.ReadAllText(userFilePath);
                     userData = JsonSerializer.Deserialize<UserData>(json) ?? new UserData();
                 }
+                else
+                {
+                    userData = new UserData();
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Error loading user data");
+                MessageBox.Show("Error loading user data: " + ex.Message);
                 userData = new UserData();
             }
 
@@ -84,8 +88,15 @@ namespace OOP_Progect
 
         void SaveData()
         {
-            string json = JsonSerializer.Serialize(userData);
-            File.WriteAllText(userFilePath, json);
+            try
+            {
+                string json = JsonSerializer.Serialize(userData);
+                File.WriteAllText(userFilePath, json);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving data: " + ex.Message);
+            }
         }
 
         // =========================
@@ -128,28 +139,56 @@ namespace OOP_Progect
         // =========================
         public void AddSession(string date, string duration, string breakTime, SessionStatus status)
         {
-            List<SessionRecord> sessions;
-
-            if (File.Exists(sessionFilePath))
+            try
             {
-                string json = File.ReadAllText(sessionFilePath);
-                sessions = JsonSerializer.Deserialize<List<SessionRecord>>(json) ?? new List<SessionRecord>();
+                // 1. تعريف مصفوفة الكائنات
+                SessionRecord[] sessions;
+
+                // 2. قراءة الداتا القديمة (إن وجدت)
+                if (File.Exists(sessionFilePath))
+                {
+                    string json = File.ReadAllText(sessionFilePath);
+                    // بنقرأ الداتا كمصفوفة مش كـ List
+                    sessions = JsonSerializer.Deserialize<SessionRecord[]>(json) ?? new SessionRecord[0];
+                }
+                else
+                {
+                    // لو مفيش ملف، بنعمل مصفوفة فاضية
+                    sessions = new SessionRecord[0];
+                }
+
+                // 3. تجهيز الجلسة الجديدة
+                SessionRecord newSession = new SessionRecord
+                {
+                    Date = date,
+                    Duration = duration,
+                    BreakTime = breakTime,
+                    Status = status
+                };
+
+                // 4. التريكة بتاعت المصفوفة: نعمل مصفوفة جديدة أكبر بواحد
+                SessionRecord[] updatedSessions = new SessionRecord[sessions.Length + 1];
+
+                // 5. ننقل الداتا القديمة للمصفوفة الجديدة
+                for (int i = 0; i < sessions.Length; i++)
+                {
+                    updatedSessions[i] = sessions[i];
+                }
+
+                // 6. نحط الجلسة الجديدة في آخر مكان في المصفوفة
+                updatedSessions[sessions.Length] = newSession;
+
+                // 7. الحفظ
+                SaveSessionToTxt(newSession); // حفظ الـ TXT زي ما إنت عامل
+
+                // نحفظ المصفوفة الجديدة في الـ JSON
+                string updatedJson = JsonSerializer.Serialize(updatedSessions, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(sessionFilePath, updatedJson);
             }
-            else
+            catch (Exception ex)
             {
-                sessions = new List<SessionRecord>();
+                MessageBox.Show("Error saving session: " + ex.Message);
             }
-
-            sessions.Add(new SessionRecord
-            {
-                Date = date,
-                Duration = duration,
-                BreakTime = breakTime,
-                Status = status
-            });
-
-            string updatedJson = JsonSerializer.Serialize(sessions, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(sessionFilePath, updatedJson);
         }
 
         // =========================
@@ -288,6 +327,19 @@ namespace OOP_Progect
             path.CloseFigure();
             return path;
         }
-        
+        void SaveSessionToTxt(SessionRecord session)
+        {
+            try
+            {
+                string line = $"{session.Date} | {session.Duration} | {session.BreakTime} | {session.Status}";
+                File.AppendAllText("sessions.txt", line + Environment.NewLine);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving TXT: " + ex.Message);
+            }
+        }
+
     }
+
 }

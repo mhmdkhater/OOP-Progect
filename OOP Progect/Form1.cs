@@ -55,5 +55,10 @@ namespace OOP_Progect
             form.Show();
             this.Hide();
         }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
